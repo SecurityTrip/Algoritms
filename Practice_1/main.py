@@ -1,7 +1,7 @@
 import random
 import time
 
-
+# Пузырьковая сортировка
 def bubble_sort(mas):
     for j in range(1, len(mas) - 1):
         for i in range(0, len(mas) - 1):
@@ -12,11 +12,12 @@ def bubble_sort(mas):
     return mas
 
 
+# Быстрая сортировка (quick sort)
 def quick_sort(mas):
     if len(mas) <= 1:
         return mas
     else:
-        index_of_support_element = random.randint(0, len(mas) - 1)
+        index_of_support_element = random.randint(0, len(mas) - 1) # Выбираем опорный элемент случайным образом
         min_mas = []
         equal_mas = []
         max_mas = []
@@ -42,14 +43,12 @@ def function(count):
     start_time = time.time()
     bubble_sort(arr1)
     tmp_time = time.time() - start_time
-    print("Время выполнения сортировки пузырьком: ")
-    print(tmp_time)
+    print("Время выполнения сортировки пузырьком:", tmp_time)
 
     start_2_time = time.time()
     arr2 = quick_sort(arr2)
     tmp_time = time.time() - start_2_time
-    print("Время выполнения быстрой сортировки: ")
-    print(tmp_time)
+    print("Время выполнения быстрой сортировки:", tmp_time, "\n")
 
 
 def check_function():
@@ -85,9 +84,9 @@ def check_function():
 
 if __name__ == "__main__":
     print("Практическая работа № 1. Алгоритмы сортировки, Вариант 5. Выполнил: Лысов Илья, 6204-020302D")
-    # function(1000)
+    # check_function()
     # print("\n")
+    function(1000)
     function(5000)
-    print("\n")
-    # function(10000)
-    # print("\n")
+    function(10000)
+
