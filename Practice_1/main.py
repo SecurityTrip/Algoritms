@@ -1,6 +1,7 @@
 import random
 import time
 
+
 # Пузырьковая сортировка
 def bubble_sort(mas):
     for j in range(1, len(mas) - 1):
@@ -17,7 +18,7 @@ def quick_sort(mas):
     if len(mas) <= 1:
         return mas
     else:
-        index_of_support_element = random.randint(0, len(mas) - 1) # Выбираем опорный элемент случайным образом
+        index_of_support_element = random.randint(0, len(mas) - 1)  # Выбираем опорный элемент случайным образом
         min_mas = []
         equal_mas = []
         max_mas = []
@@ -52,41 +53,33 @@ def function(count):
 
 
 def check_function():
-    count = random.randint(10, 20)
-    print(count)
+    count = random.randint(100, 200)
+    print("Число элементов в массиве:", count)
     arr1 = []
     for i in range(0, count):
         arr1.append(random.randint(-1000, 1000))
 
     arr2 = arr1.copy()
 
-    print("Массив до сортировки пузырьком: ")
-    print(arr1)
+    print("Массив до сортировки пузырьком:", arr1)
     start_time = time.time()
     bubble_sort(arr1)
-    print("Время выполнения сортировки пузырьком: ")
-    print(time.time() - start_time)
-    print("Массив после сортировки пузырьком: ")
-    print(arr1)
+    tmp_time1 = time.time() - start_time
+    print("Время выполнения сортировки пузырьком:", tmp_time1)
+    print("Массив после сортировки пузырьком:", arr1, "\n")
 
-    print("\n")
-
-    print("Массив до быстрой сортировки: ")
-    print(arr2)
+    print("Массив до быстрой сортировки:", arr2)
     start_2_time = time.time()
     arr2 = quick_sort(arr2)
-    print(arr2)
-    print("Время выполнения быстрой сортировки: ")
-    print(time.time() - start_2_time)
-    print("Массив после быстрой сортировки: ")
-    print(arr2)
+    tmp_time2 = time.time() - start_2_time
+    print("Время выполнения быстрой сортировки:", tmp_time2)
+    print("Массив после быстрой сортировки:", arr2, "\n")
 
 
 if __name__ == "__main__":
     print("Практическая работа № 1. Алгоритмы сортировки, Вариант 5. Выполнил: Лысов Илья, 6204-020302D")
     # check_function()
-    # print("\n")
+
     function(1000)
     function(5000)
     function(10000)
-
