@@ -31,6 +31,8 @@ def quick_sort(mas):
                 max_mas.append((mas[i]))
         return quick_sort(min_mas) + equal_mas + quick_sort(max_mas)
 
+    # 2 / (j -i +1)
+
 
 def function(count):
     # count = random.randint(1000, 10000)
@@ -44,41 +46,16 @@ def function(count):
     start_time = time.time()
     bubble_sort(arr1)
     tmp_time = time.time() - start_time
-    print("Время выполнения сортировки пузырьком:", tmp_time)
+    print("Время выполнения сортировки пузырьком:", tmp_time * 1000, "мс")
 
     start_2_time = time.time()
     arr2 = quick_sort(arr2)
     tmp_time = time.time() - start_2_time
-    print("Время выполнения быстрой сортировки:", tmp_time, "\n")
-
-
-def check_function():
-    count = random.randint(100, 200)
-    print("Число элементов в массиве:", count)
-    arr1 = []
-    for i in range(0, count):
-        arr1.append(random.randint(-1000, 1000))
-
-    arr2 = arr1.copy()
-
-    print("Массив до сортировки пузырьком:", arr1)
-    start_time = time.time()
-    bubble_sort(arr1)
-    tmp_time1 = time.time() - start_time
-    print("Время выполнения сортировки пузырьком:", tmp_time1)
-    print("Массив после сортировки пузырьком:", arr1, "\n")
-
-    print("Массив до быстрой сортировки:", arr2)
-    start_2_time = time.time()
-    arr2 = quick_sort(arr2)
-    tmp_time2 = time.time() - start_2_time
-    print("Время выполнения быстрой сортировки:", tmp_time2)
-    print("Массив после быстрой сортировки:", arr2, "\n")
+    print("Время выполнения быстрой сортировки:", tmp_time * 1000, "мс", "\n")
 
 
 if __name__ == "__main__":
     print("Практическая работа № 1. Алгоритмы сортировки, Вариант 5. Выполнил: Лысов Илья, 6204-020302D")
-    # check_function()
 
     function(1000)
     function(5000)

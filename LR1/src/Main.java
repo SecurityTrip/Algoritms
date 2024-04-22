@@ -1,48 +1,82 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Тесты для задачи 1
-        ListNode head1 = new ListNode(1);
-        head1.next = new ListNode(2);
-        head1.next.next = new ListNode(3);
-        head1.next.next.next = new ListNode(4);
-        head1.next.next.next.next = head1.next;
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+        while (flag){
+            System.out.println("Введите номер задания (0 - выход): ");
 
-        SolutionOne solution1 = new SolutionOne();
-        ListNode result1 = solution1.detectCycle(head1);
-        System.out.println("Начальный узел петли: " + result1.val);
+            int task = sc.nextInt();
 
-        // Тесты для задачи 2
-        RandomListNode head2 = new RandomListNode(1);
-        head2.next = new RandomListNode(2);
-        head2.next.next = new RandomListNode(3);
-        head2.random = head2.next.next;
-        head2.next.random = head2;
-        head2.next.next.random = head2.next;
+            switch(task){
+                case 1:
+                    System.out.println("Задание 1. Дан однонаправленный список с петлёй. Его «последний» элемент содержит указатель на\n" +
+                            "один из элементов этого же списка, причём не обязательно на первый. Найдите начальный\n" +
+                            "узел петли. Элементы списка менять нельзя, память должна быть константна.\n");
 
-        SolutionTwo solution2 = new SolutionTwo();
-        RandomListNode result2 = solution2.copyRandomList(head2);
-        System.out.println("Скопированный список с двумя указателями:");
-        while (result2 != null) {
-            System.out.println("Value: " + result2.val + ", Random: " + (result2.random != null ? result2.random.val : "null"));
-            result2 = result2.next;
+                    ListNode head_1 = new ListNode(1);
+                    head_1.next = new ListNode(2);
+                    head_1.next.next = new ListNode(3);
+                    head_1.next.next.next = new ListNode(4);
+                    head_1.next.next.next.next = head_1.next.next; // создание цикла
+
+                    ListNode cycleStart = ListNode.findCycle(head_1);
+                    if (cycleStart != null) {
+                        System.out.println("Значение в начальном узле петли: " + cycleStart.val);
+                    } else {
+                        System.out.println("Цикл не найден.");
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("Задание 2. Дан список с двумя указателями у каждого элемента. Зацикленность списка не допускается.\n" +
+                            "Скопируйте данный список за время О(n) без использования дополнительной памяти.\n" +
+                            "Выделение памяти под все данные одним блоком (как под массив) не допускается, список\n" +
+                            "должен быть разбросанным по частям.\n");
+
+                    ListNode head_2 = new ListNode(1);
+                    head_2.next = new ListNode(2);
+                    head_2.next.next = new ListNode(3);
+                    head_2.next.next.next = new ListNode(2);
+                    head_2.next.next.next.next = new ListNode(4);
+                    head_2.next.next.next.next.next = new ListNode(3);
+
+                    System.out.println("Исходный список:");
+                    ListNode.printList(head_2);
+
+                    ListNode copy = ListNode.copyList(head_2);
+
+                    System.out.println("Скопированный список:");
+                    ListNode.printList(copy);
+
+                    break;
+
+                case 3:
+                    System.out.println("Задание 3. Удалите дубликаты из несортированного связного списка. Память должна быть константна.\n");
+
+                    ListNode head_3 = new ListNode(1);
+                    head_3.next = new ListNode(2);
+                    head_3.next.next = new ListNode(3);
+                    head_3.next.next.next = new ListNode(2);
+                    head_3.next.next.next.next = new ListNode(4);
+                    head_3.next.next.next.next.next = new ListNode(3);
+
+                    System.out.println("Исходный список:");
+                    ListNode.printList(head_3);
+
+                    ListNode.removeDuplicate(head_3);
+
+                    System.out.println("Список после удаления дубликатов:");
+                    ListNode.printList(head_3);
+                    break;
+
+                case 0:
+                        flag = false;
+                        break;
+            }
         }
 
-        // Тесты для задачи 3
-        ListNode head3 = new ListNode(1);
-        head3.next = new ListNode(2);
-        head3.next.next = new ListNode(2);
-        head3.next.next.next = new ListNode(3);
-        head3.next.next.next.next = new ListNode(4);
-        head3.next.next.next.next.next = new ListNode(4);
 
-        SolutionThree solution3 = new SolutionThree();
-        solution3.deleteDuplicates(head3);
-
-        System.out.println("Список после удаления дубликатов:");
-        ListNode current = head3;
-        while (current != null) {
-            System.out.print(current.val + " ");
-            current = current.next;
-        }
     }
 }
