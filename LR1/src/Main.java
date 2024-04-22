@@ -8,13 +8,13 @@ public class Main {
         boolean flag = true;
 
         while (flag){
-            while (task < 1 || task > 3){
+            while (task < 0 || task > 3){
                 try {
                     Scanner sc = new Scanner(System.in);
                     System.out.println("Введите номер задания (0-3, 0 - выход): ");
                     task = sc.nextInt();
                 } catch (Exception e) {
-                    System.out.println("Ошибка ввода:");
+                    System.out.println("Ошибка ввода, попробуйте заново.");
                 }
             }
 
@@ -29,7 +29,7 @@ public class Main {
                     head_1.next = new ListNode(2);
                     head_1.next.next = new ListNode(3);
                     head_1.next.next.next = new ListNode(4);
-                    head_1.next.next.next.next = head_1.next.next; // создание цикла
+                    head_1.next.next.next.next = head_1.next; // создание цикла
 
                     ListNode cycleStart = ListNode.findCycle(head_1);
                     if (cycleStart != null) {
@@ -84,8 +84,8 @@ public class Main {
                     break;
 
                 case 0:
-                        flag = false;
-                        break;
+                    flag = false;
+                    break;
             }
         }
 

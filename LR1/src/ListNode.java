@@ -1,7 +1,7 @@
 class ListNode {
     int val;
     ListNode next;
-    ListNode random;
+    ListNode tmp_next;
 
     ListNode(int x) {
         val = x;
@@ -55,8 +55,8 @@ class ListNode {
         // Второй проход: установка случайных указателей для копий
         curr = head;
         while (curr != null) {
-            if (curr.random != null) {
-                curr.next.random = curr.random.next;
+            if (curr.tmp_next != null) {
+                curr.next.tmp_next = curr.tmp_next.next;
             }
             curr = curr.next.next;
         }
