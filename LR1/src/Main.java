@@ -2,12 +2,22 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        boolean flag = true;
-        while (flag){
-            System.out.println("Введите номер задания (0 - выход): ");
+        System.out.println("Лабораторна робота №1. Списки. Вариант 1.");
 
-            int task = sc.nextInt();
+        int task = -1;
+        boolean flag = true;
+
+        while (flag){
+            while (task < 1 || task > 3){
+                try {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Введите номер задания (0-3, 0 - выход): ");
+                    task = sc.nextInt();
+                } catch (Exception e) {
+                    System.out.println("Ошибка ввода:");
+                }
+            }
+
 
             switch(task){
                 case 1:
@@ -27,6 +37,7 @@ public class Main {
                     } else {
                         System.out.println("Цикл не найден.");
                     }
+                    task = -1;
                     break;
 
                 case 2:
@@ -49,7 +60,7 @@ public class Main {
 
                     System.out.println("Скопированный список:");
                     ListNode.printList(copy);
-
+                    task = -1;
                     break;
 
                 case 3:
@@ -69,6 +80,7 @@ public class Main {
 
                     System.out.println("Список после удаления дубликатов:");
                     ListNode.printList(head_3);
+                    task = -1;
                     break;
 
                 case 0:

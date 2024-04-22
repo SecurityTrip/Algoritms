@@ -62,8 +62,8 @@ class ListNode {
         }
 
         // Третий проход: восстановление оригинального списка и создание копии списка
-        ListNode dummy = new ListNode(0);
-        ListNode newCurr = dummy;
+        ListNode result = new ListNode(0);
+        ListNode newCurr = result;
         curr = head;
         while (curr != null) {
             newCurr.next = curr.next;
@@ -71,7 +71,7 @@ class ListNode {
             curr = curr.next;
             newCurr = newCurr.next;
         }
-        return dummy.next;
+        return result.next;
     }
 
     public static void removeDuplicate(ListNode head) {
