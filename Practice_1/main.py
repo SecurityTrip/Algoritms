@@ -31,7 +31,6 @@ def quick_sort(mas):
                 max_mas.append((mas[i]))
         return quick_sort(min_mas) + equal_mas + quick_sort(max_mas)
 
-    # 2 / (j -i +1)
 
 
 def function(count):
