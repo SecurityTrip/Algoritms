@@ -12,6 +12,7 @@ def fibonacci_recursive(n):
     if n <= 1:
         return n  # T(n<=1) = O(1)
     else:
+        # TODO сложность сложения больших чисел
         return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)  # -> O(2^n)
         # T(n) = T(n-1) + T(n-2)
         # T(n-1) = O(2^(n-1))

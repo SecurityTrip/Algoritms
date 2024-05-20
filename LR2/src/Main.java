@@ -24,6 +24,7 @@ public class Main {
                     System.out.println(checkParensGeneral("{{}}[]()"));  // true
                     System.out.println(checkParensGeneral("{{[()]}}"));  // true
                     System.out.println(checkParensGeneral("{{[)]}}"));  // false
+                    System.out.println(checkParensGeneral("{(})")); // false
                     task = -1;
                     break;
 
@@ -39,23 +40,30 @@ public class Main {
                     break;
 
                 case 3:
-                    // Пример использования
                     int[] arr = {1, 3, -1, -3, 5, 3, 6, 7};
                     int k = 3;
-                    System.out.println(maxInWindow(arr, k));  // [3, 3, 5, 5, 6▌
+
+                    System.out.println("Максимумы в окне размера " + k + ":");
+                    List<Integer> maxValues = maxInWindow(arr, k);
+                    System.out.println(maxValues);
                     task = -1;
                     break;
                 case 4:
-                    int[] nums = {1, 3, 4, 2, 2}; // Массив с повторяющимся элементом
-                    int duplicate = findDuplicate(nums);
-                    System.out.println("Повторяющийся элемент: " + duplicate);
+
+                    int[] nums = {1, 3, 4, 2, 2};
+                    System.out.println("Повторяющийся элемент: " + findDuplicate(nums));
+
+                    int[] nums2 = {3, 1, 3, 4, 2};
+                    System.out.println("Повторяющийся элемент: " + findDuplicate(nums2));
+
                     task = -1;
                     break;
+
                 case 5:
                     int[][] matrix = {
-                            {1, 2, 3},
-                            {4, 0, 6},
-                            {7, 8, 9}
+                            {9, 2, 3},
+                            {4, 4, 6},
+                            {7, 8, 0}
                     };
 
                     System.out.println("Исходная матрица:");
@@ -98,37 +106,58 @@ public class Main {
     }
 
     public static List<Integer> maxInWindow(int[] arr, int k) {
-        if (arr == null || arr.length == 0 || k > arr.length) {
+        if (arr == null || arr.length == 0 || k <= 0) {
             return new ArrayList<>();
         }
 
-        Deque<Integer> deque = new ArrayDeque<>();
+        Deque<Integer> deque = new ArrayDeque<>(); // Индексы элементов
         List<Integer> result = new ArrayList<>();
 
+        // Проходим по массиву
         for (int i = 0; i < arr.length; i++) {
-            while (!deque.isEmpty() && deque.peekFirst() == i - k) {
+            // Удаляем из очереди индексы, которые вышли за пределы окна
+            while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
                 deque.pollFirst();
             }
+
+            // Удаляем из очереди элементы меньшие, чем текущий
             while (!deque.isEmpty() && arr[deque.peekLast()] < arr[i]) {
                 deque.pollLast();
             }
+
+            // Добавляем текущий индекс в очередь
             deque.offerLast(i);
+
+            // Если окно сформировано, добавляем максимум в результат
             if (i >= k - 1) {
                 result.add(arr[deque.peekFirst()]);
             }
         }
+
         return result;
     }
 
+
     public static int findDuplicate(int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                if (nums[i] == nums[j]) {
-                    return nums[i];
-                }
-            }
+        // Шаг 1: Инициализация указателей
+        int tortoise = nums[0];
+        int hare = nums[0];
+
+        // Шаг 2: Найти точку пересечения в цикле
+        do {
+            tortoise = nums[tortoise];
+            hare = nums[nums[hare]];
+        } while (tortoise != hare);
+
+        // Шаг 3: Найти вход в цикл
+        tortoise = nums[0];
+        while (tortoise != hare) {
+            tortoise = nums[tortoise];
+            hare = nums[hare];
         }
-        return -1;
+
+        // Повторяющийся элемент найден
+        return hare;
     }
 
     public static void zeroMatrix(int[][] matrix) {
