@@ -3,20 +3,18 @@ import time
 
 def fibonacci_iterative(n):
     fib_sequence = [0, 1]  # Начальные числа Фибоначчи
-    for i in range(2, n):  # O(n)
-        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])  # O(1)
-    return fib_sequence  # -> O(n)
+    for i in range(2, n): # O(n-2)
+        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2]) # O(m)
+    return fib_sequence # т.к. длина чисел Фибоначчи растёт экспоненциально, то O(m) ≈ O(n) => O(n^2)
 
 
 def fibonacci_recursive(n):
     if n <= 1:
-        return n  # T(n<=1) = O(1)
+        return n
     else:
-        # TODO сложность сложения больших чисел
-        return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)  # -> O(2^n)
-        # T(n) = T(n-1) + T(n-2)
-        # T(n-1) = O(2^(n-1))
-        # T(n) = O(2^(n-1)) + O(2^(n-2)) = O(2^n)
+
+        return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)  # -> O(2^n * m), где m - кол-во рязрядов в числе
+
 
 
 def generate_fibonacci_sequence_recursive(n):
